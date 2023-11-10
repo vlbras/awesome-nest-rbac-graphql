@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: 'trust'
+    env_file:
+      - .env
+    ports:
+      - '${DB_PORT}:${DB_PORT}'
