@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Auth {
+  accessToken: String!
+  refreshToken: String!
+}
+
 input CreateUserInput {
   email: String!
   password: String!
@@ -27,6 +32,10 @@ input GetUsersInput {
 type Mutation {
   createUser(data: CreateUserInput!): User!
   deleteUser(where: GetUserInput!): User!
+  logOut: Boolean
+  refreshTokens: Auth!
+  signIn(data: SignInInput!): Auth!
+  signUp(data: SignUpInput!): Auth!
   updateUser(data: UpdateUserInput!, where: GetUserInput!): User!
 }
 
@@ -38,6 +47,16 @@ type Query {
 enum Role {
   ADMIN
   CUSTOMER
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}
+
+input SignUpInput {
+  email: String!
+  password: String!
 }
 
 input UpdateUserInput {
