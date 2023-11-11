@@ -1,0 +1,63 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateUserInput {
+  email: String!
+  password: String!
+  role: Role
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input GetUserInput {
+  email: String
+  id: String
+}
+
+input GetUsersInput {
+  skip: Int
+  take: Int
+  where: WhereUserInput
+}
+
+type Mutation {
+  createUser(data: CreateUserInput!): User!
+  deleteUser(where: GetUserInput!): User!
+  updateUser(data: UpdateUserInput!, where: GetUserInput!): User!
+}
+
+type Query {
+  user(where: GetUserInput!): User!
+  users(params: GetUsersInput!): [User!]!
+}
+
+enum Role {
+  ADMIN
+  CUSTOMER
+}
+
+input UpdateUserInput {
+  email: String
+  password: String
+  role: Role
+  token: String
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  role: Role!
+  updatedAt: DateTime!
+}
+
+input WhereUserInput {
+  createdAt: DateTime
+  email: String
+  id: String
+  updatedAt: DateTime
+}

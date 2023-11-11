@@ -3,6 +3,7 @@ import { PrismaService } from './prisma.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { join } from 'path';
       playground: process.env.NODE_ENV !== 'prod',
       introspection: process.env.NODE_ENV !== 'prod',
     }),
+    UserModule,
   ],
   providers: [PrismaService],
 })
