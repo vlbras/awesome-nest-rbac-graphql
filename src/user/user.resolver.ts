@@ -7,7 +7,13 @@ import {
   GetUsersInput,
   UpdateUserInput,
 } from './dto';
+import { UseGuards } from '@nestjs/common';
+import { Roles } from 'src/lib/decorators';
+import { Role } from '@prisma/client';
+import { RolesGuard } from 'src/lib/guards';
 
+@UseGuards(RolesGuard)
+@Roles(Role.ADMIN)
 @Resolver(() => User)
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
