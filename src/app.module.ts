@@ -4,6 +4,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+import { AccessTokenGuard } from './lib/guards';
 
 @Module({
   imports: [
@@ -15,7 +17,14 @@ import { UserModule } from './user/user.module';
       introspection: process.env.NODE_ENV !== 'prod',
     }),
     UserModule,
+    AuthModule,
   ],
-  providers: [PrismaService],
+  providers: [
+    PrismaService,
+    {
+      provide: 'APP_GUARD',
+      useClass: AccessTokenGuard,
+    },
+  ],
 })
 export class AppModule {}
