@@ -30,13 +30,13 @@ input GetUsersInput {
 }
 
 type Mutation {
-  createUser(data: CreateUserInput!): User!
-  deleteUser(where: GetUserInput!): User!
+  createUser(data: CreateUserInput!): User
+  deleteUser(where: GetUserInput!): Boolean
   logOut: Boolean
   refreshTokens: Auth!
   signIn(data: SignInInput!): Auth!
   signUp(data: SignUpInput!): Auth!
-  updateUser(data: UpdateUserInput!, where: GetUserInput!): User!
+  updateUser(data: UpdateUserInput!, where: GetUserInput!): User
 }
 
 type Query {

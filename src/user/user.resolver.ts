@@ -41,8 +41,8 @@ export class UserResolver {
     return this.userService.update(where, data);
   }
 
-  @Mutation(() => User)
-  async deleteUser(@Args('where') where: GetUserInput): Promise<User> {
+  @Mutation(() => Boolean, { nullable: true })
+  async deleteUser(@Args('where') where: GetUserInput): Promise<void> {
     return this.userService.delete(where);
   }
 }
