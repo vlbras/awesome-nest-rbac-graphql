@@ -11,13 +11,13 @@ $ cd my-awesome-app
 $ pnpm install
 ```
 
-## Database setup
+## Databases setup
 
 ```bash
 # configure .env
 $ cp .env.example .env
 
-# run local postres
+# run local postres and redis
 $ docker-compose up -d
 
 # generate prisma client
