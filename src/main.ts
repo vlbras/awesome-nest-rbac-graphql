@@ -5,17 +5,19 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  });
+
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
     }),
   );
 
-  await app.listen(process.env.APP_PORT);
+  await app.listen(process.env.PORT);
 
-  Logger.log(
-    `Running on http://localhost:${process.env.APP_PORT}`,
-    'Bootstrap',
-  );
+  Logger.log(`Running on http://localhost:${process.env.PORT}`, 'Bootstrap');
 }
 bootstrap();
