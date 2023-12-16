@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { AccessTokenGuard } from './lib/guards';
 import { CacheModule } from '@nestjs/cache-manager';
 import { redisStore } from 'cache-manager-redis-yet';
+import { graphQLExceptionFormat } from './lib/exceptions';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { redisStore } from 'cache-manager-redis-yet';
       sortSchema: true,
       playground: process.env.NODE_ENV !== 'prod',
       introspection: process.env.NODE_ENV !== 'prod',
+      formatError: graphQLExceptionFormat,
     }),
     CacheModule.register({
       isGlobal: true,
